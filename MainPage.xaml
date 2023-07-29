@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiDemoApp.MainPage"
+             xmlns:views="clr-namespace:MauiDemoApp.Views">
+
+    <views:BaseContentPage.BasePageContent>
+        <ScrollView>
+            <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                <Label Text="Hello World...?"/>
+                <CollectionView x:Name="CVStudentData" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" SelectionMode="Multiple"
+                        Margin="5,10,5,0" BackgroundColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
+                        SelectionChanged="CVStudentData_SelectionChanged">
+
+                    <CollectionView.Header>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Frame IsVisible="False" CornerRadius="10" HasShadow="False" IsClippedToBounds="True" BorderColor="Black">
+                                <Label Text="No record found" TextColor="Red" FontAttributes="Bold" FontSize="16" VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand"/>
+                            </Frame>
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="5" HorizontalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border  StrokeShape="RoundRectangle 10,10,10,10" Padding="10" Margin="0"  Stroke="Black" BackgroundColor="Black">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Red" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid RowSpacing="10" ColumnDefinitions="*,*">
+                                    <Label Grid.Column="0" Text="{Binding Id}" TextColor="White" FontSize="14"
+                                                VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                                    <Label Grid.Column="1" Text="{Binding StudentName}" TextColor="White" FontSize="14"
+                                                VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <StackLayout Orientation="Vertical" Padding="0,5,0,0">
+                            <Label Text=""/>
+                        </StackLayout>
+                    </CollectionView.Footer>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </views:BaseContentPage.BasePageContent>
+
+</views:BaseContentPage>
